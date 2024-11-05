@@ -1,0 +1,43 @@
+
+
+
+security:
+    # Configuration du hashage de mot de passe
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    
+    # Configuration des fournisseurs d’utilisateurs
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        
+    
+    # Configuration des firewalls
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+        main:
+            lazy: true
+            provider: app_user_provider  # Utilise le fournisseur d’utilisateur basé sur l’entité User
+            custom_authenticator:
+                - App\Security\UserAuthenticator
+            logout:
+                path: app_logout
+                target: app_login
+            remember_me:
+                secret: '%kernel.secret%' 
+                lifetime: 604800
+                path: /
+                always_remember_me: true
+                
+
+
+    
+    # Contrôle d'accès pour les routes spécifiques
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

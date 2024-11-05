@@ -1,0 +1,45 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Create product{% endblock %}
+
+{% block body %}
+         
+        <div class="container mt-5">
+    <h1 class="mb-4">Create Product</h1>
+    
+    {{ form_start(form) }}
+    
+    <div class="mb-3">
+        <label class="form-label">Name Product</label>
+        {{ form_widget(form.name_p, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.name_p) }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        {{ form_widget(form.description_p, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.description_p) }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.prix) }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Quantity</label>
+        {{ form_widget(form.qte_p, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.qte_p) }}
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+    <a href="{{ path('app_product') }}" class="btn btn-secondary ms-2">Back</a>
+    
+    {{ form_end(form) }}
+</div>
+
+
+       
+{% endblock %}
